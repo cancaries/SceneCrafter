@@ -2,7 +2,7 @@
 
 <div align="center">
   <img src="assets/scenecrafter_logo.png" alt="Logo" width="300">
-  <h1 align="center">Unraveling the Effects of Synthetic Data on End-to-End <br>Autonomous Driving Humanoid Robots</h1>
+  <h1 align="center">Unraveling the Effects of Synthetic Data on <br>End-to-End Autonomous Driving Humanoid Robots</h1>
 
 <p align="center">
     <a href="https://scholar.google.com/citations?user=2oeqemsAAAAJ&hl=en"><strong>Junhao Ge*</strong></a><sup>1</sup>
