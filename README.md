@@ -48,4 +48,6 @@
 - [ ] Project Page
 - [ ] Code Release
 - [ ] Demo Data Relase
+- [ ] Installation of this repo
+- [ ] Demo script for demo
  
