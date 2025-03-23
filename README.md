@@ -1,7 +1,7 @@
 <a id="readme-top"></a>
 
 <div align="center">
-  <img src="assets/scenecrafter_logo.png" alt="Logo" width="100">
+  <img src="assets/scenecrafter_logo.png" alt="Logo" width="300">
   <h1 align="center">Unraveling the Effects of Synthetic Data on End-to-End <br>Autonomous Driving Humanoid Robots</h1>
 
 <p align="center">
