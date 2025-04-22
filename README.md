@@ -44,7 +44,7 @@
 </div>
 
 ## TODOs
-- [ ] Arxiv Link
+- [x] Arxiv Link
 - [ ] Project Page
 - [ ] Code Release
 - [ ] Demo Data Relase
