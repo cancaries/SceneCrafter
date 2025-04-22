@@ -1,7 +1,7 @@
 <a id="readme-top"></a>
 
 <div align="center">
-  <img src="assets/scenecrafter_logo.png" alt="Logo" width="100">
+  <img src="assets/scenecrafter_logo.png" alt="Logo" width="300">
   <h1 align="center">Unraveling the Effects of Synthetic Data on End-to-End <br>Autonomous Driving Humanoid Robots</h1>
 
 <p align="center">
@@ -28,7 +28,7 @@
     <!-- <a href="https://xdimlab.github.io/HUGSIM/">
       <img src="https://img.shields.io/badge/Project-Page-green?style=for-the-badge" alt="Project Page" height="20">
     </a> -->
-    <a href="https://arxiv.org/abs/">
+    <a href="https://arxiv.org/abs/2503.18108">
       <img src="https://img.shields.io/badge/arXiv-Paper-red?style=for-the-badge" alt="arXiv Paper" height="20">
     </a>
   </p>
