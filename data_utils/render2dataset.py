@@ -43,7 +43,7 @@ from scipy.spatial import KDTree
 from scipy.ndimage import gaussian_filter1d
 from PIL import Image
 from cal_utils import calculate_distance, rpy2R, bbox_to_corner3d, disassemble_matrix
-from graphics_utils import project_numpy
+from graphics_utils import project_numpy, project_label_to_image
 from waymo_utils import load_extrinsics, load_intrinsics
 
 # Coordinate system transformation: OpenCV camera to standard camera system
@@ -215,7 +215,7 @@ def main():
     print('Processing scenes:', specific_scene)
 
     # Process each render output directory
-    for render_output_path in os.listdir(args.render_path):
+    for render_output_path in os.listdir(render_path):
         scene_name = render_output_path.split('_')[-1]
         print('Scene name:', scene_name)
         

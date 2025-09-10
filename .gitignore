@@ -4,8 +4,8 @@ __pycache__/
 
 # Ignore certain file types
 *.mp4
-!assets/*.png
 *.png
+!assets/*.png
 *.pth
 *.ckpt
 *.npy

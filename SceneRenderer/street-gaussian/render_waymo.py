@@ -431,7 +431,7 @@ def render_novel():
         renderer = StreetGaussianRenderer()
         
         # Setup output directory and clean if exists
-        save_dir = os.path.join(cfg.model_path, trajectory_name, f"{scene_name}_{scene_number}")
+        save_dir = os.path.join(cfg.model_path, trajectory_name, f"{scene_name}_{str(scene_number).zfill(3)}")
         if os.path.exists(save_dir):
             os.system(f'rm -rf {save_dir}')
         visualizer = StreetGaussianVisualizer(save_dir)

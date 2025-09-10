@@ -1,85 +1,100 @@
+#!/bin/bash
+# Dataset Conversion Script
+# This script manages parallel execution of dataset conversion tasks with configurable concurrency.
+# It reads commands from a task file and executes them in parallel while respecting the maximum job limit.
+# 
+# Usage: ./convert_dataset.sh [optional_experiment_name]
+# - If no argument provided, uses current timestamp as experiment name
+# - If argument provided, extracts last two underscore-separated fields as timestamp
+
+# Generate experiment name based on input parameter or current timestamp
 if [ -z "$1" ]; then
     now=$(date +"%Y%m%d_%H%M%S")
     exp_name="traffic_gen_$now"
 else
-    # now为输入字段被_分割的倒数两个字段
+    # Extract the last two underscore-separated fields as timestamp from input parameter
     now=$(echo $1 | awk -F_ '{print $(NF-1)"_"$NF}')
     exp_name="traffic_gen_$now"
 fi
 
+# Create log directory for this experiment
 mkdir -p "./scripts/logs/$now"
 
-# 任务文件路径
+# Path to the task file containing conversion commands
 task_file="./scripts/tasks/convert_tasks_$exp_name.txt"
 
-# 最大并发任务数
+# Maximum number of concurrent jobs to run
 max_jobs=10
 
-# 检查任务文件是否存在
+# Check if the task file exists before proceeding
 if [ ! -f "$task_file" ]; then
     echo "Error: Task file '$task_file' does not exist!"
     exit 1
 fi
 
-# 当前正在运行的任务 PID 列表
+# Array to store PIDs of currently running tasks
 running_pids=()
 
-# 函数：启动一个新任务
+# Function: Start a new task from the task file
 start_task() {
-    # 从任务文件中读取下一行任务
+    # Read the next command from the task file based on current task index
     local command=$(awk "NR==$task_index" "$task_file")
     if [ -z "$command" ]; then
-        return  # 没有更多任务
+        return  # No more tasks to process
     fi
     echo "Starting task: $command"
-    bash -c "$command" > "./scripts/logs/$now/convert_output_$$.log" 2>&1 &  # 输出重定向到日志文件
+    # Execute the command in background with output redirected to log file
+    bash -c "$command" > "./scripts/logs/$now/convert_output_$$.log" 2>&1 &
     pid=$!
-    running_pids+=("$pid")  # 记录 PID
+    running_pids+=("$pid")  # Store the PID for monitoring
 }
 
-# 函数：清理所有运行中的任务
+# Function: Clean up all running tasks
+# This is called when script exits or receives termination signals
 cleanup_tasks() {
     echo "Cleaning up running tasks..."
     for pid in "${running_pids[@]}"; do
         if kill -0 $pid > /dev/null 2>&1; then
             echo "Terminating task with PID $pid"
-            kill -9 $pid > /dev/null 2>&1  # 强制终止任务
+            kill -9 $pid > /dev/null 2>&1  # Force terminate the task
         fi
     done
-    running_pids=()  # 清空 PID 列表
+    running_pids=()  # Clear the PID list
 }
 
-# 捕获中断信号 (Ctrl+C) 和退出信号
+# Set up signal handlers for graceful shutdown
+# This ensures cleanup when user presses Ctrl+C or system sends termination signals
 trap 'echo "Interrupt signal received. Exiting..."; cleanup_tasks; exit 1' SIGINT SIGTERM EXIT
 
-# 主循环
-total_tasks=$(wc -l < "$task_file")  # 统计任务总数
-task_index=1  # 初始化任务索引
+# Main execution loop
+# Count total number of tasks in the task file
+total_tasks=$(wc -l < "$task_file")
+task_index=1  # Initialize task counter
 
 while true; do
-    # 启动新任务直到达到最大并发数或任务耗尽
+    # Launch new tasks until max concurrency is reached or all tasks are scheduled
     while [ ${#running_pids[@]} -lt $max_jobs ] && [ $task_index -le $total_tasks ]; do
         start_task
-        ((task_index++))  # 移动到下一个任务
+        ((task_index++))  # Move to the next task
     done
 
-    # 如果没有运行中的任务且所有任务已完成，则退出主循环
+    # Exit when all tasks are completed
     if [ ${#running_pids[@]} -eq 0 ] && [ $task_index -gt $total_tasks ]; then
         echo "All tasks have been completed!"
         break
     fi
 
-    # 检查并清理已完成的任务
+    # Check for completed tasks and remove their PIDs from monitoring list
     for pid in "${running_pids[@]}"; do
         if ! kill -0 $pid > /dev/null 2>&1; then
-            # 如果进程已结束，从运行列表中移除其 PID
+            # Process has finished, remove PID from tracking array
             running_pids=(${running_pids[@]/$pid})
         fi
     done
 
-    # 等待一段时间后再次检查
+    # Brief pause before next status check
     sleep 1
 done
 
-# 脚本正常退出时清理任务
+# Final cleanup on normal script exit
 cleanup_tasks
