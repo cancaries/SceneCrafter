@@ -72,8 +72,6 @@ SceneCrafter is a powerful toolkit for generating realistic driving scenarios, s
 - pytorch 1.13.1+cu116
 
 ### Set up the conda environment
-<details> <summary>Set up the conda environment</summary>
-
 ```
 # git clone the repository
 git clone https://github.com/cancaries/SceneCrafter.git
@@ -94,7 +92,6 @@ pip install ./SceneRenderer/street-gaussian/submodules/diff-gaussian-rasterizati
 pip install ./SceneRenderer/street-gaussian/submodules/simple-knn
 pip install ./SceneRenderer/street-gaussian/submodules/simple-waymo-open-dataset-reader
 ```
-</details>
 
 ### Demo Data
 We provide a demo data in [demo link](https://drive.google.com/file/d/1MEWgGKGfl3bf7MIQAwg_jhc-uMK4hWYU/view?usp=drive_link), please unzip it in the `root` folder. You can try the demo by running the following command:
