@@ -27,7 +27,7 @@ __pycache__/
 custom_code
 
 # Ignore data directories
-data/
+data
 external_data/
 demo/
 
