@@ -1,0 +1,4 @@
+# ninja log v5
+1	28604	1733382854256830434	/root/junhaoge/real_world_simulation/renderer/street-gaussian/submodules/simple-knn/build/temp.linux-x86_64-3.8/simple_knn.o	eb4629f26116abcd
+0	37869	1733382863524630673	/root/junhaoge/real_world_simulation/renderer/street-gaussian/submodules/simple-knn/build/temp.linux-x86_64-3.8/ext.o	cd72ddf0b1e653c0
+17	128621	1733382954218330618	/root/junhaoge/real_world_simulation/renderer/street-gaussian/submodules/simple-knn/build/temp.linux-x86_64-3.8/spatial.o	ac372b5fc360a583

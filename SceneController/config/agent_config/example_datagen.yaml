@@ -1,0 +1,42 @@
+data:
+  data_root: 'data/waymo_scene_data/019'
+  save_dir: 'data/traffic_flow/019'
+  available_asset_dir: 'demo/assets_info/realcar_gaussian_info.json'
+simulation:
+  mode: 'datagen' # debug, datagen
+  max_steps: 300 # simulation steps
+  ego_control_steps: 0 # ego control steps
+  FPS: 10 # simulation time step
+  scenario_trigger: false # trigger scenario
+  ignore_static: false # ignore static objects
+  path_ignore_static: true # ignore static objects when spawn agents
+  random_seed: 303 # random seed
+  agent_spawn:
+    spawn_mode: 'random' # random, close_to_ego, same_lane, opposite_lane
+    max_spawn_proportion: 0.25 # max spawn proportion of all spawn points
+    max_spawn_num: 20 # number of agents to spawn - for every mode
+    close_spawn_distance: 30.0 # close spawn distance if spawn_mode is close
+ego_vehicle:
+  original_step_num: 0 # mantain the original step number
+  vehcile_type: 'car' # car
+  vehicle_bbox: [2.0, 5.0, 1.8] # width, length, height
+  vehicle_fr_length: [0.8, 1.1] # front length/rear length
+  vehicle_max_control_angle: 40.0 # control angle
+  behavior_type: 'aggressive' # cautiou, normal, aggressive, extreme_aggressive 
+other_agents:
+  vehicle_type_list: ['car', 'SUV', 'truck', 'bus'] # car, SUV, truck, bus
+  vehicle_type_proportion: [0.8, 0.2, 0.0, 0.0] # car, SUV, truck, bus
+  exclude_vehicle_type: [] # exclude vehicle type
+  vehicle_type_fr_len_dict: # front length/rear length for car, SUV, truck, bus
+    car: 1.3
+    SUV: 1.5
+    truck: 2.5
+    bus: 3.0
+  vehicle_type_max_control_angle: # control angle for car, SUV, truck, bus
+    car: 50.0
+    SUV: 50.0
+    truck: 40.0
+    bus: 35.0
+  speed_type: 'fast'
+  behaviour_type_proportion: [0.0, 0.15, 0.85, 0.0] # proportion for behaviour types cautiou, normal, aggressive, extreme_aggressive
+

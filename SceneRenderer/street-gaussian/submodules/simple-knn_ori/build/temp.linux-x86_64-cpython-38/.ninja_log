@@ -1,0 +1,4 @@
+# ninja log v5
+1	7393	1727015827950924190	/home/ubuntu/longtengfan/RT-bkgd/tools/street_gaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-38/simple_knn.o	30ea76997601fc90
+0	15440	1727015835982972251	/home/ubuntu/longtengfan/RT-bkgd/tools/street_gaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-38/ext.o	eb3762661e3b3042
+1	37676	1727015858223108285	/home/ubuntu/longtengfan/RT-bkgd/tools/street_gaussians/submodules/simple-knn/build/temp.linux-x86_64-cpython-38/spatial.o	807b226769f6f722

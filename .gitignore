@@ -1,0 +1,47 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore certain file types
+*.mp4
+*.png
+*.pth
+*.ckpt
+*.npy
+*.bin
+*.ply
+*.jpg
+*.safetensors
+*.zip
+*.tar
+*.dat
+*.bundle
+*.bmp
+*.gif
+*.gz
+*.tar.gz
+*.log
+*.txt
+
+# Ignore custom directories
+custom_code
+
+# Ignore data directories
+data/
+external_data/
+demo/
+
+# Ignore logs and temporary files
+scripts/logs
+SceneController/scripts/logs
+SceneRenderer/street-gaussian/scripts/logs
+
+# Ignore output files in SceneRenderer
+SceneRenderer/street-gaussian/data/
+SceneRenderer/street-gaussian/configs/
+SceneRenderer/street-gaussian/output/
+
+SceneRenderer/street-gaussian_e2e/
+
+# Ignore GenAD files
+DrivingPlanner/GenAD
