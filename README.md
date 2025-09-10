@@ -63,118 +63,6 @@ A comprehensive scene generation and simulation framework for autonomous driving
 
 SceneCrafter is a powerful toolkit for generating realistic driving scenarios, simulating traffic behaviors, and rendering high-quality scene data for autonomous driving research and development.
 
-## Features
-
-- **Scene Generation**: Create diverse driving scenarios with configurable parameters
-- **Traffic Simulation**: Simulate realistic traffic flow and vehicle behaviors
-- **3D Rendering**: High-quality scene rendering using advanced graphics techniques
-- **Data Processing**: Utilities for processing and preparing simulation data
-- **Waymo Integration**: Support for Waymo Open Dataset format
-
-## Installation
-
-### Prerequisites
-
-- Python 3.8+
-- CARLA Simulator (for full simulation capabilities)
-- CUDA-enabled GPU (for rendering)
-
-### Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/SceneCrafter.git
-cd SceneCrafter
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Setup submodules (if applicable)
-git submodule update --init --recursive
-```
-
-## Usage
-
-### Basic Scene Generation
-
-```python
-from SceneController.scene import SceneGenerator
-from SceneController.agents.navigation.tools.misc import build_transform_path_from_ego_pose_data
-
-# Initialize scene generator
-generator = SceneGenerator(config_path="config/scene_config/default.yaml")
-
-# Generate a basic scene
-scene = generator.generate_scene()
-
-# Process ego vehicle data
-ego_transforms = build_transform_path_from_ego_pose_data(scene.ego_pose_data)
-```
-
-### Traffic Simulation
-
-```python
-from SceneController.agents.map import MapManager
-from SceneController.agents.navigation.tools.misc import detect_route_interaction
-
-# Load map data
-map_manager = MapManager("path/to/map/data")
-
-# Simulate traffic flow
-traffic_flow = map_manager.generate_traffic_flow()
-
-# Check route interactions
-interaction = detect_route_interaction(test_path, reference_path)
-```
-
-### Rendering
-
-```python
-from SceneRenderer.street_gaussian import SceneRenderer
-
-# Initialize renderer
-renderer = SceneRenderer(config_path="config/render_config/default.yaml")
-
-# Render scene
-rendered_scene = renderer.render(scene_data)
-```
-
-## Project Structure
-
-```
-SceneCrafter/
-├── SceneController/          # Scene control and simulation
-│   ├── agents/              # Autonomous agents
-│   ├── config/              # Configuration files
-│   ├── simulation/          # Simulation utilities
-│   └── scripts/            # Utility scripts
-├── SceneRenderer/           # Rendering components
-│   ├── street-gaussian/    # Gaussian splatting renderer
-│   └── street-gaussian_e2e/# End-to-end rendering pipeline
-├── data_utils/             # Data processing utilities
-│   ├── box_utils.py        # Bounding box operations
-│   ├── cal_utils.py        # Calibration utilities
-│   └── waymo_utils.py      # Waymo dataset utilities
-└── demo/                   # Demo assets and examples
-```
-
-## Configuration
-
-Configuration files are located in `SceneController/config/`:
-
-- `agent_config/`: Agent behavior configurations
-- `scene_config/`: Scene generation parameters
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -184,24 +72,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you use SceneCrafter in your research, please cite our work:
 
 ```bibtex
-@software{scenecrafter2024,
-  title = {SceneCrafter: A Comprehensive Scene Generation Framework},
-  author = {SceneCrafter Team},
-  year = {2024},
-  url = {https://github.com/your-username/SceneCrafter}
+@misc{ge2025unravelingeffectssyntheticdata,
+      title={Unraveling the Effects of Synthetic Data on End-to-End Autonomous Driving}, 
+      author={Junhao Ge and Zuhong Liu and Longteng Fan and Yifan Jiang and Jiaqi Su and Yiming Li and Zhejun Zhang and Siheng Chen},
+      year={2025},
+      eprint={2503.18108},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2503.18108}, 
 }
 ```
-
-## Support
-
-For questions and support:
-
-- Open an issue on GitHub
-- Check the documentation (coming soon)
-- Join our discussion forum
-
-## Acknowledgments
-
-- CARLA Simulator team for the excellent simulation platform
-- Waymo Open Dataset for providing valuable autonomous driving data
-- Gaussian Splatting community for advanced rendering techniques
