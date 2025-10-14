@@ -69,7 +69,7 @@ SceneCrafter is a powerful toolkit for generating realistic driving scenarios, s
 
 - Python 3.8+
 - CUDA-enabled GPU (for rendering)
-- pytorch 1.13.1+cu116
+- pytorch 2.4.1+cu121
 
 ### Set up the conda environment
 ```
